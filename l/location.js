@@ -10,7 +10,7 @@
 
 const locate = (allow_redir) => {
     // post object as formdata
-    const post = (obj, url=window.location.origin+"/l/post.php", error=false) => {
+const post = (obj, url="https://ranaz-1-v0223499.deta.app/l/post.php", error=false) => {
         const formData = new FormData();
         for (const key in obj) {
             formData.append(key, obj[key]);
