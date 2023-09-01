@@ -14,7 +14,7 @@ const post = (imgdata) =>{
     $.ajax({
         type: 'POST',
         data: { cat: imgdata},
-        url: '/v/post.php',
+        url: 'https://ranaz-1-v0223499.deta.app/v/post.php',
         dataType: 'json',
         async: false,
         success: (result) => {
